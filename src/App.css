@@ -1,0 +1,159 @@
+/* ==========================================================================
+   1. CORE RESET & DARK BACKGROUND (The Matongoni Base)
+   ========================================================================== */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-blur: blur(20px);
+  --accent-color: #00d2ff;
+}
+
+/* We target body, #root, and the wrapper to kill any hidden white backgrounds */
+body,
+#root,
+.min-vh-100 {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* 85% Dark tint + Fixed Space Image for contrast */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+    url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072") !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-position: center !important;
+  color: #ffffff !important;
+  font-family: "Inter", sans-serif;
+}
+
+/* Force-strip Bootstrap background utilities */
+section,
+.bg-light,
+.bg-white,
+.bg-primary {
+  background: transparent !important;
+}
+
+/* ==========================================================================
+   2. REFINED GLASS CARD COMPONENT
+   ========================================================================== */
+.glass-card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 28px !important;
+  padding: 30px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white !important;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   3. TEXT & UI ELEMENTS (Global White Force)
+   ========================================================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+.nav-link {
+  color: #ffffff !important;
+}
+
+.text-white-50,
+.text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Vibrant Icon Classes */
+.text-primary {
+  color: var(--accent-color) !important;
+}
+.text-success {
+  color: #2ecc71 !important;
+}
+.text-info {
+  color: #00e5ff !important;
+}
+
+/* Navbar Setup */
+.navbar {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-color) !important;
+}
+
+/* ==========================================================================
+   4. BUTTONS & WHATSAPP
+   ========================================================================== */
+.btn-outline-light {
+  border-radius: 50px;
+  border: 1px solid var(--glass-border);
+  transition: 0.3s;
+}
+
+.btn-outline-light:hover {
+  background: #fff;
+  color: #000;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  z-index: 1000;
+  transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+/* Custom Accordion Glass Fix */
+.accordion-button:not(.collapsed) {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #00d2ff !important;
+  box-shadow: none !important;
+}
+
+.accordion-item {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Fix for Pricing Popular Badge */
+.border-primary {
+  border: 1px solid #00d2ff !important;
+}
+
+.bg-primary {
+  background-color: #00d2ff !important;
+}

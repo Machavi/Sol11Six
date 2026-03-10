@@ -1,0 +1,22 @@
+/* index.css */
+html {
+  scroll-behavior: smooth;
+}
+
+/* This adds padding so the Navbar doesn't cover the top of your sections */
+section {
+  scroll-margin-top: 70px;
+}
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif; /* Or your preferred font */
+  overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
+html {
+  scroll-behavior: smooth;
+}
