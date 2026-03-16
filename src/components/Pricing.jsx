@@ -14,7 +14,8 @@ const Pricing = () => {
         "B-BBEE Certificate",
         "Share Certificates",
       ],
-      color: "secondary",
+      btnVariant: "outline-light",
+      glowClass: "hover-glow-white",
     },
     {
       name: "Growth",
@@ -25,8 +26,9 @@ const Pricing = () => {
         ".co.za Domain",
         "Professional Logo",
       ],
-      color: "primary",
+      btnVariant: "primary",
       popular: true,
+      glowClass: "btn-glow btn-pulse",
     },
     {
       name: "Premium",
@@ -37,7 +39,8 @@ const Pricing = () => {
         "SEO Setup",
         "Business Profile",
       ],
-      color: "info",
+      btnVariant: "outline-light",
+      glowClass: "hover-glow-white",
     },
   ];
 
@@ -52,7 +55,9 @@ const Pricing = () => {
     <section className="py-5" id="pricing">
       <Container>
         <div className="text-center mb-5" data-aos="fade-up">
-          <h2 className="display-5 fw-bold text-white">Choose Your Plan</h2>
+          <h2 className="display-5 fw-bold text-white text-uppercase tracking-wider">
+            Choose Your Plan
+          </h2>
           <p className="text-white-50">
             Affordable compliance and branding for SA entrepreneurs
           </p>
@@ -67,33 +72,65 @@ const Pricing = () => {
               data-aos-delay={index * 100}
             >
               <div
-                className={`glass-card p-4 h-100 text-center text-white ${pkg.popular ? "border-primary" : ""}`}
+                className={`glass-card p-4 h-100 text-center text-white ${pkg.popular ? "border-primary border-2 shadow-lg" : "border-secondary"}`}
               >
                 {pkg.popular && (
-                  <span className="badge bg-primary mb-3">MOST POPULAR</span>
+                  <span className="badge bg-primary mb-3 rounded-pill px-3">
+                    MOST POPULAR
+                  </span>
                 )}
                 <h3 className="fw-bold">{pkg.name}</h3>
-                <h2 className="my-4 fw-light">{pkg.price}</h2>
+                <h2
+                  className="my-4 fw-bold display-6"
+                  style={{
+                    color: pkg.popular ? "var(--accent-color)" : "#fff",
+                  }}
+                >
+                  {pkg.price}
+                </h2>
                 <ul className="list-unstyled mb-5 text-start">
                   {pkg.features.map((feat, i) => (
-                    <li key={i} className="mb-2">
-                      <i className="bi bi-check-circle-fill text-primary me-2"></i>{" "}
+                    <li key={i} className="mb-2 small">
+                      <i
+                        className={`bi bi-check-circle-fill me-2 ${pkg.popular ? "text-primary" : "text-secondary"}`}
+                      ></i>{" "}
                       {feat}
                     </li>
                   ))}
                 </ul>
+
                 <Button
-                  variant={pkg.popular ? "primary" : "outline-light"}
-                  className="w-100 py-3 fw-bold shadow-sm"
+                  variant={pkg.btnVariant}
+                  className={`w-100 py-3 fw-bold rounded-pill text-uppercase ${pkg.glowClass}`}
                   onClick={() => handleSelect(pkg.name)}
                 >
-                  Select Package
+                  Select Plan
                 </Button>
               </div>
             </Col>
           ))}
         </Row>
       </Container>
+
+      <style>{`
+        /* White glow for Startup and Premium on hover */
+        .hover-glow-white {
+          transition: all 0.3s ease-in-out;
+          border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hover-glow-white:hover {
+          background-color: white !important;
+          color: black !important;
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+          transform: translateY(-3px);
+        }
+
+        /* Keep the Growth button blue glow consistent */
+        .btn-glow {
+          box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+        }
+      `}</style>
     </section>
   );
 };

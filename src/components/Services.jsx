@@ -5,14 +5,14 @@ import {
   FileText,
   BarChart3,
   Image,
-  Monitor, // New icon for Web Design
+  Monitor,
   Search,
   Server,
   Globe,
   Mail,
   ExternalLink,
-  QrCode, // New icon for QR Generator
-  RefreshCw, // New icon for Annual Returns
+  QrCode,
+  RefreshCw,
 } from "lucide-react";
 
 const servicesData = [
@@ -91,7 +91,7 @@ const servicesData = [
 ];
 
 const Services = () => {
-  const whatsappNumber = "27793752769";
+  const whatsappNumber = "27733112640";
 
   const requestQuote = (title) => {
     const text = `Hi! I'm interested in a quote for "${title}".`;
@@ -125,9 +125,10 @@ const Services = () => {
               </div>
               <h5 className="fw-bold text-white mb-2">{s.title}</h5>
               <p className="text-white-50 small mb-4">{s.desc}</p>
+
               <button
                 onClick={() => requestQuote(s.title)}
-                className="btn btn-outline-light btn-sm mt-auto d-flex align-items-center justify-content-center gap-2"
+                className="btn btn-outline-light btn-sm mt-auto d-flex align-items-center justify-content-center gap-2 btn-service-glow"
               >
                 Request Quote <ExternalLink size={14} />
               </button>
@@ -135,6 +136,30 @@ const Services = () => {
           </div>
         ))}
       </div>
+
+      <style>{`
+        .btn-service-glow {
+          border-color: rgba(255, 255, 255, 0.3);
+          transition: all 0.3s ease-in-out;
+          /* Removed text-transform, font-weight, and letter-spacing to keep original font */
+        }
+
+        .btn-service-glow:hover {
+          background-color: white !important;
+          color: black !important;
+          box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+          transform: translateY(-2px);
+          border-color: white;
+        }
+
+        .glass-card {
+          transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+      `}</style>
     </section>
   );
 };

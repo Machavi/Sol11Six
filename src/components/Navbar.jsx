@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom"; // Added these imports
+import logo from "../assets/logoo.png";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // This ref stops the "highlight" from jumping while scrolling to a clicked section
+  const location = useLocation(); // Track current page
   const isManualScrolling = useRef(false);
 
   const handleClick = (id) => {
@@ -14,16 +16,17 @@ const Navbar = () => {
     setActiveLink(id);
     setIsOpen(false);
 
-    // Release the lock after 1 second (after scroll finishes)
     setTimeout(() => {
       isManualScrolling.current = false;
     }, 1000);
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80);
+    // Only run intersection observer if we are on the home page
+    if (location.pathname !== "/") return;
 
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
       if (isManualScrolling.current) return;
 
       const sections = ["home", "services", "about", "portfolio", "contact"];
@@ -41,18 +44,11 @@ const Navbar = () => {
       });
     };
 
-    const observerOptions = {
-      rootMargin: "-20% 0px -60% 0px",
-      threshold: 0,
-    };
-
+    const observerOptions = { rootMargin: "-20% 0px -60% 0px", threshold: 0 };
     const observer = new IntersectionObserver((entries) => {
       if (isManualScrolling.current) return;
-
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveLink(entry.target.id);
-        }
+        if (entry.isIntersecting) setActiveLink(entry.target.id);
       });
     }, observerOptions);
 
@@ -70,43 +66,62 @@ const Navbar = () => {
         if (el) observer.unobserve(el);
       });
     };
-  }, []);
+  }, [location.pathname]); // Re-run if path changes
 
   const navLinks = [
-    { name: "Home", href: "#home", id: "home" },
-    { name: "Services", href: "#services", id: "services" },
-    { name: "How It Works", href: "#about", id: "about" },
-    { name: "Portfolio", href: "#portfolio", id: "portfolio" },
-    { name: "Contact", href: "#contact", id: "contact" },
+    { name: "Home", href: "/#home", id: "home" },
+    { name: "Services", href: "/#services", id: "services" },
+    { name: "How It Works", href: "/#about", id: "about" },
+    { name: "Portfolio", href: "/#portfolio", id: "portfolio" },
+    { name: "Contact", href: "/#contact", id: "contact" },
   ];
 
   return (
     <nav
-      className={`navbar navbar-expand-lg fixed-top transition-all ${isScrolled ? "bg-white shadow-sm py-2" : "bg-transparent py-3"}`}
+      className={`navbar navbar-expand-lg fixed-top transition-all navbar-dark ${
+        isScrolled ? "nav-scrolled shadow-lg py-1" : "bg-transparent py-3"
+      }`}
     >
       <div className="container">
-        <a
-          className="navbar-brand fw-bold text-primary"
-          href="#home"
+        <Link
+          className="navbar-brand d-flex align-items-center"
+          to="/#home"
           onClick={() => handleClick("home")}
         >
-          Sol11<span className="text-dark">Six</span>
-        </a>
+          <img
+            src={logo}
+            alt="Sol11 Six Logo"
+            className="navbar-logo"
+            style={{
+              height: isScrolled ? "45px" : "60px",
+              width: "auto",
+              transition: "all 0.3s ease",
+            }}
+          />
+        </Link>
 
         <button
-          className="navbar-toggler border-0 shadow-none"
+          className="navbar-toggler border-0 shadow-none p-0"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? (
+            <X size={28} color="#fff" />
+          ) : (
+            <Menu size={28} color="#fff" />
+          )}
         </button>
 
         <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
             {navLinks.map((link) => (
               <li key={link.id} className="nav-item">
-                <a
-                  className={`nav-link fw-semibold px-3 transition-all ${activeLink === link.id ? "text-primary active fw-bold" : "text-dark"}`}
-                  href={link.href}
+                <Link
+                  className={`nav-link fw-semibold px-3 transition-all ${
+                    activeLink === link.id
+                      ? "text-primary active fw-bold"
+                      : "text-white-50"
+                  }`}
+                  to={link.href}
                   onClick={() => handleClick(link.id)}
                   style={{
                     borderBottom:
@@ -116,15 +131,15 @@ const Navbar = () => {
                   }}
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="nav-item ms-lg-3 mt-3 mt-lg-0">
               <a
-                href="https://wa.me/27793752769"
+                href="https://wa.me/27733112640"
                 target="_blank"
                 rel="noreferrer"
-                className="btn btn-primary rounded-pill px-4 shadow-sm fw-bold"
+                className="btn btn-primary rounded-pill px-4 shadow-sm fw-bold btn-glow"
               >
                 Get Started
               </a>
@@ -132,6 +147,27 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+
+      <style>{`
+        .nav-scrolled {
+          background: rgba(10, 10, 10, 0.95) !important;
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-link:hover { color: #fff !important; }
+        @media (max-width: 991px) {
+          .navbar-collapse.show {
+            background: rgba(15, 15, 15, 0.98) !important;
+            padding: 1.5rem; border-radius: 1rem; margin-top: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+          }
+          .navbar-collapse.show .nav-link {
+            color: #fff !important; padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+          }
+        }
+      `}</style>
     </nav>
   );
 };
