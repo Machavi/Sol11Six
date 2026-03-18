@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-// 1. Import your project images
+// 1. Import project images
 import churchImg from "../assets/church.png";
 import storeImg from "../assets/store.png";
+import graphicImg from "../assets/graphic.jpeg";
 
 const Portfolio = () => {
   const [activeProject, setActiveProject] = useState(null);
@@ -12,10 +13,10 @@ const Portfolio = () => {
       title: "Sol11Six Agency - Visual Identity",
       category: "Visual Branding",
       description:
-        "Complete corporate identity launch featuring logos, flyers, and business cards.",
+        "Building market-ready brands with custom logos, digital flyers, and professional corporate profiles.",
       details:
-        "Designed a cohesive and modern visual language for Sol11Six. The suite includes vector logos, a professional PDF company profile, interactive digital flyers, and print-ready business cards designed for the South African corporate market.",
-      image: null, // Add your branding image here
+        "Your one-stop shop for business-ready graphics. We design logos that stick, posters that convert, and every digital or print asset in between. From high-resolution vector logos to interactive flyers and professional price lists, we deliver clean, modern visuals tailored to your unique brand identity.",
+      image: graphicImg,
     },
     {
       id: 2,
@@ -158,6 +159,8 @@ const Portfolio = () => {
       <style>{`
         .portfolio-card {
           transition: all 0.4s ease;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 15px;
         }
         .portfolio-card:hover {
           transform: translateY(-10px);
@@ -179,7 +182,6 @@ const Portfolio = () => {
           background: #1a1a1a;
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        /* White Glow Effect for Case Study Buttons */
         .btn-case-study {
           border-color: rgba(255, 255, 255, 0.3);
           transition: all 0.3s ease;
@@ -189,6 +191,9 @@ const Portfolio = () => {
           color: black !important;
           box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
           border-color: white;
+        }
+        .btn-glow:hover {
+          box-shadow: 0 0 20px rgba(13, 110, 253, 0.6);
         }
       `}</style>
     </section>

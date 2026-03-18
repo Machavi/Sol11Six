@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChevronUp } from "lucide-react"; // Matching your icon set
+import { ChevronUp } from "lucide-react";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);

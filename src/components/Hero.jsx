@@ -17,7 +17,7 @@ const Hero = () => {
       }}
     >
       <div className="container animate-hero px-4">
-        {/* Subheading - Now pushed down by responsive padding */}
+        {/* Subheading */}
         <div className="hero-subheading text-primary fw-bold text-uppercase fade-up-1">
           Solution One One Six
         </div>
@@ -51,7 +51,6 @@ const Hero = () => {
       </div>
 
       <style>{`
-        /* 1. Fix for Fixed Navbar overlap */
         .masthead {
           padding-top: 100px; /* Base padding for mobile */
         }

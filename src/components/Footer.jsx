@@ -17,7 +17,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="col-lg-4 my-3 my-lg-0">
             <div className="d-flex justify-content-center gap-3">
-              {/* Facebook - FIXED LINK */}
+              {/* Facebook */}
               <a
                 className="btn btn-social-icon rounded-circle"
                 href="https://www.facebook.com/share/18DL3LnC19/?mibextid=wwXIfr"

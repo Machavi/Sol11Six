@@ -3,7 +3,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* This adds padding so the Navbar doesn't cover the top of your sections */
+/* This adds padding so the Navbar so doesn't cover the top of the sections */
 section {
   scroll-margin-top: 70px;
 }
@@ -13,7 +13,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Inter", sans-serif; /* Or your preferred font */
+  font-family: "Inter", sans-serif;
   overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
 }
 

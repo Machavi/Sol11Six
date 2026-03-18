@@ -23,7 +23,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Privacy from "./components/Privacy";
 import Terms from "./components/Terms";
 
-// --- REFINED SCROLL MANAGEMENT ---
+// --- SCROLL MANAGEMENT ---
 const ScrollToHashElement = () => {
   const { hash, pathname } = useLocation();
 
@@ -82,7 +82,7 @@ const Home = ({ open, setOpen }) => (
 
     <FAQ open={open} toggle={(i) => setOpen(open === i ? null : i)} />
 
-    {/* FINAL CALL TO ACTION */}
+    {/* CALL TO ACTION */}
     <section className="py-5 text-center">
       <div className="container py-4">
         <div className="glass-card py-5 px-4" data-aos="zoom-in">

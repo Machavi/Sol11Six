@@ -23,14 +23,17 @@ const Timeline = () => {
     <section id="about" className="py-5 bg-dark text-white">
       <div className="container">
         <div className="text-center mb-5" data-aos="fade-down">
-          <h2 className="text-uppercase fw-bold text-primary">How It Works</h2>
-          <h3 className="section-subheading text-muted">
+          <h2 className="text-uppercase fw-bold text-primary tracking-wider">
+            How It Works
+          </h2>
+          <h3 className="section-subheading text-white-50">
             Your journey from idea to fully compliant business.
           </h3>
         </div>
+
         <div className="row">
           <div className="col-lg-12">
-            <ul className="list-unstyled position-relative m-0 p-0">
+            <ul className="list-unstyled position-relative m-0 p-0 timeline-list">
               {steps.map((step, index) => (
                 <li
                   key={index}
@@ -39,30 +42,29 @@ const Timeline = () => {
                     index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                   }`}
                 >
-                  <div className="text-center px-4" style={{ zIndex: 2 }}>
-                    <div
-                      className="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center shadow"
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                        border: "6px solid rgba(255,255,255,0.1)",
-                      }}
-                    >
+                  {/* The Blue Circle with Restored Glow */}
+                  <div
+                    className="text-center px-4 timeline-circle-container"
+                    style={{ zIndex: 2 }}
+                  >
+                    <div className="timeline-step-circle d-inline-flex align-items-center justify-content-center">
                       <span className="fw-bold">{step.date}</span>
                     </div>
                   </div>
 
+                  {/* Text Content */}
                   <div
                     className={`flex-grow-1 ${
                       index % 2 === 0 ? "text-start ms-3" : "text-end me-3"
                     }`}
                   >
-                    <h4 className="fw-bold text-white">{step.title}</h4>
+                    <h4 className="fw-bold text-white mb-2">{step.title}</h4>
                     <p
                       className="text-white-50 mb-0"
                       style={{
                         maxWidth: "500px",
                         display: index % 2 === 0 ? "block" : "inline-block",
+                        lineHeight: "1.6",
                       }}
                     >
                       {step.desc}
@@ -71,35 +73,22 @@ const Timeline = () => {
                 </li>
               ))}
 
-              {/* REPLACED THE OLD GO CIRCLE WITH THIS BUTTON */}
+              {/* GO BUTTON */}
               <li
                 className="text-center mt-5 pb-5"
                 data-aos="zoom-in"
                 style={{ zIndex: 2, position: "relative" }}
               >
                 <div className="d-inline-block position-relative">
-                  {/* The Pulse Effect */}
                   <div className="pulse-ring"></div>
-
                   <a
                     href="#contact"
-                    className="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow-lg hover-scale"
-                    style={{
-                      width: "120px",
-                      height: "120px",
-                      fontSize: "1.8rem",
-                      fontWeight: "bold",
-                      border: "4px solid rgba(255,255,255,0.2)",
-                      zIndex: "2",
-                      position: "relative",
-                      textDecoration: "none",
-                      color: "white",
-                    }}
+                    className="btn-go-glow d-flex align-items-center justify-content-center text-decoration-none"
                   >
                     GO!
                   </a>
                 </div>
-                <p className="text-primary mt-4 fw-bold text-uppercase tracking-wider animate-pulse-text">
+                <p className="text-primary mt-4 fw-bold text-uppercase tracking-widest animate-pulse-text">
                   Ready to Start? Click Go
                 </p>
               </li>
@@ -109,6 +98,45 @@ const Timeline = () => {
       </div>
 
       <style>{`
+
+        .timeline-step-circle {
+          width: 100px;
+          height: 100px;
+          background: #0d6efd;
+          color: white;
+          border-radius: 50%;
+          border: 4px solid rgba(255, 255, 255, 0.2);
+          box-shadow: 0 0 20px rgba(13, 110, 253, 0.5);
+          transition: all 0.3s ease-in-out;
+        }
+
+        .timeline-step-circle:hover {
+          transform: scale(1.1);
+          box-shadow: 0 0 35px rgba(13, 110, 253, 0.8);
+          background: #00d2ff;
+        }
+
+        .btn-go-glow {
+          width: 120px;
+          height: 120px;
+          background: #0d6efd;
+          border-radius: 50%;
+          font-size: 1.8rem;
+          font-weight: bold;
+          color: white;
+          border: 4px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 0 30px rgba(13, 110, 253, 0.6);
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 2;
+        }
+
+        .btn-go-glow:hover {
+          transform: scale(1.1);
+          background: #0b5ed7;
+          box-shadow: 0 0 45px rgba(13, 110, 253, 0.9);
+        }
+
         .pulse-ring {
           position: absolute;
           top: 0;
@@ -126,24 +154,20 @@ const Timeline = () => {
           100% { transform: scale(1.6); opacity: 0; }
         }
 
-        .hover-scale {
-          transition: all 0.3s ease-in-out;
-        }
-
-        .hover-scale:hover {
-          transform: scale(1.1);
-          background-color: #0b5ed7 !important;
-          box-shadow: 0 0 30px rgba(13, 110, 253, 0.8) !important;
-        }
-
         .animate-pulse-text {
           animation: fadePulse 2s infinite;
         }
 
         @keyframes fadePulse {
-          0% { opacity: 0.5; }
+          0%, 100% { opacity: 0.5; }
           50% { opacity: 1; }
-          100% { opacity: 0.5; }
+        }
+
+        @media (max-width: 991px) {
+           .timeline-circle-container {
+             padding-left: 0 !important;
+             padding-right: 20px !important;
+           }
         }
       `}</style>
     </section>
