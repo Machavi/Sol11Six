@@ -53,7 +53,7 @@ const TrustBar = () => {
           ))}
         </div>
 
-        {/* Refined Legal Disclaimer Section */}
+        {/* Legal Disclaimer Section */}
         <div className="mt-5 pt-4 border-top border-secondary">
           <div className="container" style={{ maxWidth: "900px" }}>
             <p
@@ -64,11 +64,11 @@ const TrustBar = () => {
                 letterSpacing: "0.01em",
               }}
             >
-              <strong className="text-white">Legal Disclaimer:</strong> Sol11Six
-              is a private entity and an independent service provider. We are
-              not affiliated with, endorsed by, or an official arm of the CIPC,
-              SARS, or any government department. All logos, trademarks, and
-              registered names used on this site are the property of their
+              <strong className="text-white">Legal Disclaimer:</strong> Solution
+              116 is a private entity and an independent service provider. We
+              are not affiliated with, endorsed by, or an official arm of the
+              CIPC, SARS, or any government department. All logos, trademarks,
+              and registered names used on this site are the property of their
               respective owners and are used here for identification and
               informational purposes only.
             </p>
